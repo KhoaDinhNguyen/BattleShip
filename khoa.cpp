@@ -10,38 +10,35 @@ public:
     Ship(){name = "", cnt = 0;}
     Ship(string name, int cnt){this->name = name; this->cnt = cnt;}
     string getName(){return name;}
+    void setName(string name){this->name = name;}
+    void setNum(int num){this->cnt = num;}
     int getNum(){return cnt;}
     void destroy(){cnt--;}
 };
 
-
-class MotherShip:public Ship{
-    public:
-    MotherShip():Ship("Mothership",5){}
-};
-
-class BattleShip:public Ship{
-    public:
-    BattleShip():Ship("Battleship",4){}
-};
-
-class Destroyer:public Ship{
-    public:
-    Destroyer():Ship("Destroyer",3){}
-};
-
 class BattleField{
 private:
-    MotherShip* motherShip;
-    BattleShip* battleShip;
-    Destroyer* destroyer;
+    Ship* motherShip, *battleShip, *destroyer;
     int cnt;
 public:
     bool lose = false;
     BattleField(int a, int b, int c){
-        motherShip = new MotherShip[a];
-        battleShip = new BattleShip[b];
-        destroyer = new Destroyer[c];
+        motherShip = new Ship[a];
+        battleShip = new Ship[b];
+        destroyer = new Ship[c];
+        for(int i = 0 ; i < a ; ++i){
+            motherShip[i].setName("Mothership");
+            motherShip[i].setNum(5);
+        }
+
+        for(int i = 0 ; i < b ; ++i){
+            battleShip[i].setName("BattleShip");
+            battleShip[i].setNum(4);
+        }
+        for(int i = 0 ; i < c ; ++i){
+            destroyer[i].setName("Destroyer");
+            destroyer[i].setNum(3);
+        }
         cnt = a + b + c;
     }
     ~BattleField(){
@@ -73,8 +70,6 @@ public:
 
 
 int main(){
-
-
     return 0;
 }
 
