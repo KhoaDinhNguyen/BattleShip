@@ -11,7 +11,12 @@ int main(){
         std::cout << "Game Over!" << std::endl; 
     
     std::vector coor = map.mothership->getCoor();
-    std::cout << coor[2][1] << std::endl;
+    std::cout << "Before rotation: ";
+    std::cout << coor[2][0] << "  " <<coor[2][1] << std::endl;
+    map.mothership->rotateShip(4);
+    std::cout << "After rotation: ";
+    coor = map.mothership->getCoor();
+    std::cout << coor[2][0] << "  " <<coor[2][1] << std::endl;
 
     map.showMap();
     map.gridShot(0,1);

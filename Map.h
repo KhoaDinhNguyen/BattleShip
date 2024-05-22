@@ -1,5 +1,6 @@
 #include <iostream>
 #include <array>
+#include <random>
 #include "Ship.h"
 #include "Grid.h"
 
@@ -15,6 +16,7 @@ private:
     int yDim;
     int shipCnt;
     bool clearShip;
+    std::default_random_engine generator; // RNG
 public:
     Ship* mothership;
     // Constructor
