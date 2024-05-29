@@ -115,3 +115,24 @@ h1 {
     border-right: white;
     border-bottom: white;
 }
+
+/*============================= quit and restart ======================= */
+
+#interact {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+#interact .quit, #interact .restart {
+    margin: 10px;
+    background-color: gray;
+    border: black solid 3px;
+    border-radius: 10px;
+    margin-top: 0px;
+    cursor: default;
+}
+
+#interact .quit:active, #interact .restart:active {
+    box-shadow: 5px 5px gray;
+}
