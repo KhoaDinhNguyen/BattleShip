@@ -59,27 +59,27 @@ h1 {
 #board {
     display: grid;
     margin: 0 auto;
-    grid-template-columns: 1fr 70% 1fr;
+    grid-template-columns: 1fr 70% 3fr;
     grid-template-rows: auto auto;
 }
  
-#board #interact {
+#interact {
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
 }
 
-#board #console{
+#console{
     grid-column: 3 / span 1;
     grid-row: 1 / span 1;
 }
 
 /*============================= table ======================= */
-#board table {
+table.playboard {
     border-collapse: collapse;
     background-color: #04bade;
 }
 
-#board table td {
+table.playboard td {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
     border: white solid 2px;
@@ -87,12 +87,12 @@ h1 {
     height: 60px;
 }
 
-#board table td:hover {
+table.playboard td:hover {
     background-color: #55e2e9;
 }
 
 /*============================= fire button ======================= */
-#board #fire{
+#fire{
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;
     height: 50px;
@@ -110,7 +110,7 @@ h1 {
     cursor: default;
 }
 
-#board #fire:active {
+#fire:active {
     box-shadow: 5px 5px #E72929;
     border-right: white;
     border-bottom: white;
@@ -135,4 +135,41 @@ h1 {
 
 #interact .quit:active, #interact .restart:active {
     box-shadow: 5px 5px gray;
+}
+
+#console {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.logfile {
+    border-collapse: collapse;
+    border: 3px solid black;
+    margin: 10px;
+    margin-bottom: 0px;
+    width: 90%;
+    text-align: left;
+    color: white;
+}
+
+.logfile h2 {
+    background-color: #0b6e4f;
+    padding-left: 5px;
+    border-bottom: black solid 3px;
+}
+
+.logfile ul {
+    background-color: #0b6e4f;
+    opacity: 0.8;
+    list-style-position: inside;
+}
+
+.logfile ul li{
+    margin-left: 5px;
+}
+
+.logfile ul li p{
+    display: inline;
+    margin-left: -5px;
 }
