@@ -4,10 +4,13 @@
     font-family: "Roboto", sans-serif;
 }
 
+body {
+    background-color: #0b6e4f;
+}
 main{
     background-color: #0496c7;
     text-align: center;
-    width: 80%;
+    width: 95%;
     margin: 0 auto;
 }
 
@@ -59,7 +62,7 @@ h1 {
 #board {
     display: grid;
     margin: 0 auto;
-    grid-template-columns: 1fr 70% 3fr;
+    grid-template-columns: 1fr maxmin(75%, 768px) 1fr;
     grid-template-rows: auto auto;
 }
  
@@ -141,13 +144,13 @@ table.playboard td:hover {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    margin: 0px 10px;
 }
 
 .logfile {
     border-collapse: collapse;
     border: 3px solid black;
-    margin: 10px;
-    margin-bottom: 0px;
+    margin-top: 10px;
     width: 90%;
     text-align: left;
     color: white;
@@ -172,4 +175,17 @@ table.playboard td:hover {
 .logfile ul li p{
     display: inline;
     margin-left: -5px;
+}
+
+.info {
+    color: white;
+    font-size: 14px;
+    border: black solid 3px;
+    height: 75px;
+    background-color:yellowgreen;
+    width: 90%;
+}
+
+.info h2:nth-child(1) {
+    border-bottom: black 3px solid;
 }
