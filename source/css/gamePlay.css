@@ -48,21 +48,24 @@ nav li:hover {
   cursor: default;
 }
 
-@media only screen and (min-width: 40em) and (max-width:64em){
+@media only screen and (min-width: 40rem) and (max-width: 64rem) {
   header {
     font-size: 1rem;
   }
 }
 
-@media only screen and (min-width: 64em){
+@media only screen and (min-width: 64rem) {
   header {
     font-size: 1rem;
   }
   body {
-      background-color: #0b6e4f; 
+    background-color: #0b6e4f;
   }
   main {
     width: 95%;
+  }
+  header img {
+    max-width: 3em;
   }
 }
 /*============================= main ======================= */
@@ -75,7 +78,7 @@ h1 {
   font-size: 2rem;
 }
 
-@media only screen and (min-width: 40em){
+@media only screen and (min-width: 40rem) {
   h1 {
     font-size: 3rem;
   }
@@ -95,11 +98,11 @@ table.playboard td {
   flex-shrink: 1;
 }
 
-table.playboard td:hover {  
+table.playboard td:hover {
   background-color: #55e2e9;
 }
 
-@media only screen and (min-width: 40em) and (max-width:64em){
+@media only screen and (min-width: 40rem) and (max-width: 64rem) {
   #board {
     display: grid;
     margin: 0 auto;
@@ -119,11 +122,11 @@ table.playboard td:hover {
   }
 }
 
-@media only screen and (min-width: 64em){
+@media only screen and (min-width: 64rem) {
   #board {
     display: grid;
     margin: 0 auto;
-    grid-template-columns: max-content 600px max-content;
+    grid-template-columns: 1fr 600px 1fr;
     grid-template-rows: auto auto;
   }
   table.playboard {
@@ -133,7 +136,7 @@ table.playboard td:hover {
   table.playboard td {
     border: white solid 2px;
     width: 60px;
-    height: 60px;
+    height: 50px;
   }
 }
 /*============================= fire button ======================= */
@@ -153,14 +156,13 @@ table.playboard td:hover {
   cursor: default;
 }
 
-
 #fire:active {
   box-shadow: 5px 5px #e72929;
   border-right: white;
   border-bottom: white;
 }
 
-@media only screen and (min-width: 40em) and (max-width:64em){
+@media only screen and (min-width: 40rem) and (max-width: 64rem) {
   #fire {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
@@ -169,10 +171,13 @@ table.playboard td:hover {
   }
 }
 
-@media only screen and (min-width: 64em){
+@media only screen and (min-width: 64rem) {
   #fire {
     grid-column: 2 / span 1;
     grid-row: 2 / span 1;
+    height: 3rem;
+    width: 10rem;
+    font-size: 2rem;
   }
 }
 /*============================= quit and restart ======================= */
@@ -185,22 +190,6 @@ table.playboard td:hover {
   max-width: 8rem;
   margin: 0 auto;
   font-size: 0.7rem;
-}
-
-@media only screen and (min-width: 40em) and (max-width:64em){
-  #interact {
-    grid-column: 2 / span 1;
-    grid-row: 3 / span 1;
-    margin: 10px auto;
-    width: 8rem;
-  }
-}
-
-@media only screen and (min-width: 75em){
-  #interact {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
-  }
 }
 
 #interact .quit,
@@ -217,6 +206,29 @@ table.playboard td:hover {
   box-shadow: 5px 5px gray;
 }
 
+@media only screen and (min-width: 40rem) and (max-width: 64rem) {
+  #interact {
+    grid-column: 2 / span 1;
+    grid-row: 3 / span 1;
+    margin: 10px auto;
+    width: 8rem;
+  }
+}
+
+@media only screen and (min-width: 64rem) {
+  #interact {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    margin: 10px auto;
+    width: 8rem;
+    font-size: 1.3rem;
+  }
+
+  #interact .quit,
+  #interact .restart {
+    padding: 5px;
+  }
+}
 /*============================= console ======================= */
 #console {
   display: flex;
@@ -225,22 +237,6 @@ table.playboard td:hover {
   margin: 0 auto;
   max-width: 20rem;
   font-size: 0.7rem;
-}
-
-@media only screen and (min-width: 40em) and (max-width:64em){
-  #console {
-    grid-column: 2 / span 1;
-    grid-row: 2 / span 1;
-    font-size: 0.8rem;
-  }
-}
-
-@media only screen and (min-width: 64em){
-  #console {
-    grid-column: 3 / span 1;
-    grid-row: 1 / span 1;
-    
-  } 
 }
 
 .logfile {
@@ -286,4 +282,29 @@ table.playboard td:hover {
 
 .info h2:nth-child(1) {
   border-bottom: black 3px solid;
+}
+
+@media only screen and (min-width: 40rem) and (max-width: 64rem) {
+  #console {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (min-width: 64rem) {
+  #console {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+    font-size: 1rem;
+  }
+
+  .logfile {
+    width: 15rem;
+  }
+
+  .info {
+    width: 15rem;
+    height: 5rem;
+  }
 }
