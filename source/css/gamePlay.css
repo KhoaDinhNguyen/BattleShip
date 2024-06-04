@@ -4,10 +4,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-body {
-  background-color: #0b6e4f;
-}
-
 main {
   background-color: #0496c7;
   text-align: center;
@@ -52,6 +48,23 @@ nav li:hover {
   cursor: default;
 }
 
+@media only screen and (min-width: 40em) and (max-width:64em){
+  header {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 64em){
+  header {
+    font-size: 1rem;
+  }
+  body {
+      background-color: #0b6e4f; 
+  }
+  main {
+    width: 95%;
+  }
+}
 /*============================= main ======================= */
 h1 {
   font-family: "Poetsen One", sans-serif;
@@ -62,6 +75,11 @@ h1 {
   font-size: 2rem;
 }
 
+@media only screen and (min-width: 40em){
+  h1 {
+    font-size: 3rem;
+  }
+}
 /*============================= table ======================= */
 table.playboard {
   border-collapse: collapse;
@@ -81,11 +99,47 @@ table.playboard td:hover {
   background-color: #55e2e9;
 }
 
+@media only screen and (min-width: 40em) and (max-width:64em){
+  #board {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: 450px auto;
+    grid-template-rows: auto auto auto;
+  }
+  table.playboard {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 3;
+    margin: 0 15px;
+    margin-bottom: 20px;
+  }
+  table.playboard td {
+    border: white solid 2px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media only screen and (min-width: 64em){
+  #board {
+    display: grid;
+    margin: 0 auto;
+    grid-template-columns: max-content 600px max-content;
+    grid-template-rows: auto auto;
+  }
+  table.playboard {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+  }
+  table.playboard td {
+    border: white solid 2px;
+    width: 60px;
+    height: 60px;
+  }
+}
 /*============================= fire button ======================= */
 #fire {
   height: 2rem;
   width: 7rem;
-  justify-self: center;
   font-size: 1.5rem;
   font-family: "Kanit", sans-serif;
   font-weight: 400;
@@ -99,12 +153,28 @@ table.playboard td:hover {
   cursor: default;
 }
 
+
 #fire:active {
   box-shadow: 5px 5px #e72929;
   border-right: white;
   border-bottom: white;
 }
 
+@media only screen and (min-width: 40em) and (max-width:64em){
+  #fire {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+    align-self: end;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 64em){
+  #fire {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+  }
+}
 /*============================= quit and restart ======================= */
 
 #interact {
@@ -115,6 +185,22 @@ table.playboard td:hover {
   max-width: 8rem;
   margin: 0 auto;
   font-size: 0.7rem;
+}
+
+@media only screen and (min-width: 40em) and (max-width:64em){
+  #interact {
+    grid-column: 2 / span 1;
+    grid-row: 3 / span 1;
+    margin: 10px auto;
+    width: 8rem;
+  }
+}
+
+@media only screen and (min-width: 75em){
+  #interact {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+  }
 }
 
 #interact .quit,
@@ -138,6 +224,23 @@ table.playboard td:hover {
   justify-content: flex-end;
   margin: 0 auto;
   max-width: 20rem;
+  font-size: 0.7rem;
+}
+
+@media only screen and (min-width: 40em) and (max-width:64em){
+  #console {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    font-size: 0.8rem;
+  }
+}
+
+@media only screen and (min-width: 64em){
+  #console {
+    grid-column: 3 / span 1;
+    grid-row: 1 / span 1;
+    
+  } 
 }
 
 .logfile {
@@ -148,7 +251,6 @@ table.playboard td:hover {
   color: white;
   margin: 0 auto;
   margin-bottom: 10px;
-  font-size: 0.7rem;
 }
 
 .logfile h2 {
@@ -174,7 +276,6 @@ table.playboard td:hover {
 
 .info {
   color: white;
-  font-size: 0.7rem;
   border: black solid 3px;
   height: 4rem;
   background-color: yellowgreen;
