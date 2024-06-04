@@ -1,191 +1,188 @@
 * {
-    padding: 0;
-    margin: 0;
-    font-family: "Roboto", sans-serif;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
-    background-color: #0b6e4f;
+  background-color: #0b6e4f;
 }
-main{
-    background-color: #0496c7;
-    text-align: center;
-    width: 95%;
-    margin: 0 auto;
+
+main {
+  background-color: #0496c7;
+  text-align: center;
+  margin: 0 auto;
 }
 
 header {
-    background-color: #fdde55;
-    display: flex;
-    justify-content: space-between;
+  background-color: #fdde55;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6rem;
+  flex-wrap: wrap;
 }
 
-header figure{
-    display: flex;
-    align-items: center;
+header figure {
+  display: flex;
+  align-items: center;
 }
 
-header img{
-    width: 45px;
+header img {
+  max-width: 2rem;
 }
 
 header figcaption {
-    font-weight: bolder;
-    font-size: 1.5em;
+  font-weight: bolder;
+  font-size: 1.5em;
 }
 
 nav ul {
-    list-style: none;
+  list-style: none;
 }
 
 nav li {
-    display: inline-block;
-    border-left: 3px solid white;
-    padding: 10px;
+  display: inline-block;
+  border-left: 3px solid white;
+  margin-left: -3px;
+  padding: 10px;
 }
 
 nav li:hover {
-    background-color: #f7e48c;
-    cursor: default;
+  background-color: #f7e48c;
+  cursor: default;
 }
 
 /*============================= main ======================= */
 h1 {
-    font-family: "Poetsen One", sans-serif;
-    font-weight: 200;
-    color: white;
-    margin-bottom: 20px;
-    padding-top: 5px;
-    font-size: 3em;
-}
-
-#board {
-    display: grid;
-    margin: 0 auto;
-    grid-template-columns: 1fr maxmin(75%, 768px) 1fr;
-    grid-template-rows: auto auto;
-}
- 
-#interact {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
-}
-
-#console{
-    grid-column: 3 / span 1;
-    grid-row: 1 / span 1;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 200;
+  color: white;
+  margin-bottom: 20px;
+  padding-top: 5px;
+  font-size: 2rem;
 }
 
 /*============================= table ======================= */
 table.playboard {
-    border-collapse: collapse;
-    background-color: #04bade;
+  border-collapse: collapse;
+  background-color: #04bade;
+  margin: 0 auto;
+  display: flex;
 }
 
 table.playboard td {
-    grid-column: 2 / span 1;
-    grid-row: 1 / span 1;
-    border: white solid 2px;
-    width: 60px;
-    height: 60px;
+  border: white solid 2px;
+  width: 5rem;
+  height: clamp(2rem, 2rem, 5rem);
+  flex-shrink: 1;
 }
 
-table.playboard td:hover {
-    background-color: #55e2e9;
+table.playboard td:hover {  
+  background-color: #55e2e9;
 }
 
 /*============================= fire button ======================= */
-#fire{
-    grid-column: 2 / span 1;
-    grid-row: 2 / span 1;
-    height: 50px;
-    width: 200px;
-    justify-self: center;
-    font-size: 2em;
-    font-family: "Kanit", sans-serif;
-    font-weight: 500;
-    margin: 15px 0px;
-    border-radius: 20px;
-    background-color: #E72929;
-    border-top: white solid 2px;
-    border-left: white solid 2px;
-    color: white;
-    cursor: default;
+#fire {
+  height: 2rem;
+  width: 7rem;
+  justify-self: center;
+  font-size: 1.5rem;
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+  margin: 1rem auto;
+  padding-bottom: 5px;
+  border-radius: 20px;
+  background-color: #e72929;
+  border-top: white solid 2px;
+  border-left: white solid 2px;
+  color: white;
+  cursor: default;
 }
 
 #fire:active {
-    box-shadow: 5px 5px #E72929;
-    border-right: white;
-    border-bottom: white;
+  box-shadow: 5px 5px #e72929;
+  border-right: white;
+  border-bottom: white;
 }
 
 /*============================= quit and restart ======================= */
 
 #interact {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-width: max-content;
+  max-width: 8rem;
+  margin: 0 auto;
+  font-size: 0.7rem;
 }
 
-#interact .quit, #interact .restart {
-    margin: 10px;
-    background-color: gray;
-    border: black solid 3px;
-    border-radius: 10px;
-    margin-top: 0px;
-    cursor: default;
+#interact .quit,
+#interact .restart {
+  background-color: gray;
+  border: black solid 3px;
+  border-radius: 10px;
+  cursor: default;
+  margin-bottom: 10px;
 }
 
-#interact .quit:active, #interact .restart:active {
-    box-shadow: 5px 5px gray;
+#interact .quit:active,
+#interact .restart:active {
+  box-shadow: 5px 5px gray;
 }
 
+/*============================= console ======================= */
 #console {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    margin: 0px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 auto;
+  max-width: 20rem;
 }
 
 .logfile {
-    border-collapse: collapse;
-    border: 3px solid black;
-    margin-top: 10px;
-    width: 90%;
-    text-align: left;
-    color: white;
+  border-collapse: collapse;
+  border: 3px solid black;
+  width: 10rem;
+  text-align: left;
+  color: white;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  font-size: 0.7rem;
 }
 
 .logfile h2 {
-    background-color: #0b6e4f;
-    padding-left: 5px;
-    border-bottom: black solid 3px;
+  background-color: #0b6e4f;
+  padding-left: 5px;
+  border-bottom: black solid 3px;
 }
 
 .logfile ul {
-    background-color: #0b6e4f;
-    opacity: 0.8;
-    list-style-position: inside;
+  background-color: #0b6e4f;
+  opacity: 0.8;
+  list-style-position: inside;
 }
 
-.logfile ul li{
-    margin-left: 5px;
+.logfile ul li {
+  margin-left: 5px;
 }
 
-.logfile ul li p{
-    display: inline;
-    margin-left: -5px;
+.logfile ul li p {
+  display: inline;
+  margin-left: -5px;
 }
 
 .info {
-    color: white;
-    font-size: 14px;
-    border: black solid 3px;
-    height: 75px;
-    background-color:yellowgreen;
-    width: 90%;
+  color: white;
+  font-size: 0.7rem;
+  border: black solid 3px;
+  height: 4rem;
+  background-color: yellowgreen;
+  width: 10rem;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 
 .info h2:nth-child(1) {
-    border-bottom: black 3px solid;
+  border-bottom: black 3px solid;
 }
