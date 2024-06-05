@@ -3,7 +3,7 @@
 Grid::Grid()
 {
     this->isOccupied = false;
-    this->isReveal = false;
+    this->isReveal = true;
     this->gridChar = "~";
 }
 

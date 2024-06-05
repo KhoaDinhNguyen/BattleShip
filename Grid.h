@@ -9,13 +9,13 @@ public:
     Grid();
     // Member function
     // Grid char
-    void setGridChar(std::string );
+    void setGridChar(std::string);
     std::string getGridChar();
     // Grid occupation
-    void setGridOccupy(bool );
+    void setGridOccupy(bool);
     bool getGridOccupy();
     // Grid reveallation
-    void setGridRevealStatus(bool );
+    void setGridRevealStatus(bool);
     bool getGridRevealStatus();
     // Destructor
     ~Grid();

@@ -1,4 +1,6 @@
 #include <iostream>
+#include <iomanip>
+#include <map>
 #include <array>
 #include <random>
 #include "Ship.h"
@@ -6,28 +8,36 @@
 
 class Map
 {
-private:
-    
+private:    
+    Ship* mothership;
     Ship* battleship;
     Ship* destroyer;
-    Grid* gridMap;
-    // Map dimensions
-    int xDim;
-    int yDim;
-    int shipCnt;
+    Ship* stealth;
+    Ship* patrol;
+    Grid** gridMap;
     bool clearShip;
+    // Map dimensions
+    int xDim; // number of columns
+    int yDim; // number of rows
+    int shipCnt;
+    int shotToClear; // Number of shot required to clear the map
+    std::vector<int> shipCnt2;
     std::default_random_engine generator; // RNG
 public:
-    Ship* mothership;
     // Constructor
-    Map(int , int , int , int , int );
+    Map(std::vector<int> , int , int );
     // Member function
-    int getShipCnt();
-    int updateShipCnt();
-    bool getMapStatus();
+    int getShipCnt(); // Number of active ships
+    int getShotCnt();
+    int updateShipCnt(); // Change the number of ships
+    bool getMapStatus(); 
     std::string getGridInfo(int, int);
     void showMap();
-    void gridShot(int , int );
+    int gridShot(int , int );
+    void placeShip(Ship&); // Place ship on the grid map
+    bool checkBoundary(std::array<int,2> , std::vector<std::array<int,2>>);
+    void adjustCoor(std::array<int,2>, std::array<int,2>&);
+    int findShipCoor(Ship, std::array<int,2> ); // Find the ship based on the coordinate in Ship array
     // Destructor
     ~Map();
 };

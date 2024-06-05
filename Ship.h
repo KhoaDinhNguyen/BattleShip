@@ -23,7 +23,8 @@ public:
     // Ship coordinate
     void setCoor(std::vector<std::array<int,2>>);
     std::vector<std::array<int,2>> getCoor();
-    void rotateShip(int n); // Rotate ship n times
+    void rotateShip(int ); // Rotate ship n times
+    void getHit(int );
     // Destructor
     ~Ship();
 };
