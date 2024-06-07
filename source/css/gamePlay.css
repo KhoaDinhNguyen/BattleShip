@@ -96,7 +96,7 @@ table.playboard td {
   width: 5rem;
   height: clamp(2rem, 2rem, 5rem);
   flex-shrink: 1;
-  cursor : crosshair;
+  cursor : default;
 }
 
 table.playboard td:hover {

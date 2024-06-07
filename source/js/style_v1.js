@@ -1,168 +1,222 @@
 class Ship {
     constructor(name, coor, order) {
-        this.name = name;
-        this.coor = coor;
-        this.cnt = coor.length;
-        this.order = order;
+        this._name = name;
+        this._coor = coor;
+        this._cnt = coor.length;
+        this._order = order;
     }
     get name() {
-        return this.name;
-    }
-    set name(name) {
-        this.name = name;
+        return this._name;
     }
     get coor() {
-        return this.coor;
+        return this._coor;
     }
     set coor(coor) {
-        this.coor = coor;
+        this._coor = coor;
     }
     get cnt() {
-        return this.cnt;
+        return this._cnt;
     }
-    set cnt(cnt) {
-        this.cnt = cnt;
+    set cnt(cnt){
+        this._cnt = cnt;
     }
     get order() {
-        return this.order;
-    }
-    set order(order) {
-        this.order = order;
+        return this._order;
     }
     rotateShip(rotateNums) {
-        let ship_size = this.coor.length;
-        for (let i = 0; i < ship_size; i++) {
-            for (let j = 1; j <= n; j++) {
+        let shipSize = this._coor.length;
+        for (let i = 0; i < shipSize; ++i) {
+            for (let j = 0; j < rotateNums; ++j) {
                 let temp = this.coor[i][0];
-                coor[i][0] = coor[i][1];
-                coor[i][1] = temp * (-1);
+                this.coor[i][0] = this.coor[i][1];
+                this.coor[i][1] = temp * -1;
             }
         }
     }
     getHit() {
         this.cnt--;
     }
-};
+}
 
 class MotherShip extends Ship {
-    constructor(order){
-        super("MotherShip", [[0,0],[-1,-1],[-1,1],[1,-1],[1,1]], order);
+    constructor(order) {
+        super(
+            "MotherShip",
+            [
+                [0, 0],
+                [-1, -1],
+                [-1, 1],
+                [1, -1],
+                [1, 1],
+            ],
+            order
+        );
     }
-};
+}
 
 class BattleShip extends Ship {
-    constructor(order){
-        super("Battleship", [[0,0],[0,1],[1,0],[1,1]], order);
+    constructor(order) {
+        super(
+            "Battleship",
+            [
+                [0, 0],
+                [0, 1],
+                [1, 0],
+                [1, 1],
+            ],
+            order
+        );
     }
-};
+}
 
 class Destroyer extends Ship {
-    constructor(order){
-        super("Destroyer", [[0,0],[1,-1],[1,1]], order);
+    constructor(order) {
+        super(
+            "Destroyer",
+            [
+                [0, 0],
+                [1, -1],
+                [1, 1],
+            ],
+            order
+        );
     }
-};
-
+}
 
 class StealthShip extends Ship {
-    constructor(order){
-        super("Stealth ship", [[0,0],[0,1]], order);
+    constructor(order) {
+        super(
+            "Stealth ship",
+            [
+                [0, 0],
+                [0, 1],
+            ],
+            order
+        );
     }
-};
+}
 
 class PatrolShip extends Ship {
-    constructor(order){
-        super("Patrol ship", [[0,-1],[0,0],[0,1]], order);
+    constructor(order) {
+        super(
+            "Patrol ship",
+            [
+                [0, -1],
+                [0, 0],
+                [0, 1],
+            ],
+            order
+        );
     }
-};
+}
 
 /*--------------------------------------------Grid------------------------------------------*/
 class Grid {
-    constructor(){
-        this.isOccupied = false;
-        this.isReveal = false;
-        this.gridChar = "~";
+    constructor() {
+        this._isOccupied = false;
+        this._isReveal = false;
+        this._gridType = "~";
     }
-    set gridChar(letter){
-        this.gridChar = letter;
+    set gridType(name) {
+        this._gridType = name;
     }
-    get gridChar(){
-        return this.gridChar;
+    get gridType() {
+        return this._gridType;
     }
-    set isOccupied(status){
-        this.isOccupied = status;
+    set isOccupied(status) {
+        this._isOccupied = status;
     }
-    get isOccupied(){
-        return this.isOccupied;
+    get isOccupied() {
+        return this._isOccupied;
     }
-    set isReveal(status){
-        this.isReveal = status;
+    set isReveal(status) {
+        this._isReveal = status;
     }
-    get isReveal(){
-        return this.isReveal;
+    get isReveal() {
+        return this._isReveal;
     }
-};
+}
 
 /*--------------------------------------------Map------------------------------------------*/
 class LogicMap {
-    constructor(shipsNum, xDim, yDim){
-        this.shipsArray = new Array(shipsNum.length);
-        this.numOfActiveShips = 0;
+    constructor(shipsNum, xDim, yDim) {
+        this._numOfActiveShips = 0;
 
-        for(let i = 0; i < shipsNum.length ; ++i){
-            this.shipsArray[i] = shipsNum[i];
-            this.numOfActiveShips = this.shipsArray[i] + this.numOfActiveShips;
+        for (let i = 0; i < shipsNum.length; ++i) {
+            this.numOfActiveShips = shipsNum[i] + this.numOfActiveShips;
         }
 
-        this.ships = new Array(this.numOfActiveShips);
+        this._ships = new Array();
 
-        let order = 1, idx = 0, i = 0;
-        while(idx < shipsNum.length){
-            if(shipsNum[idx] === 0){
+        let order = 1,
+            idx = 0;
+        while (idx < shipsNum.length) {
+            if (shipsNum[idx] === 0) {
                 idx++;
                 order = 1;
                 continue;
             }
-            if(idx === 0){
-                this.ships[i] = new MotherShip(order);
+            if (idx === 0) {
+                this.ships.push(new MotherShip(order));
+            } else if (idx === 1) {
+                this.ships.push(new BattleShip(order));
+            } else if (idx === 2) {
+                this.ships.push(new Destroyer(order));
+            } else if (idx === 3) {
+                this.ships.push(new StealthShip(order));
+            } else {
+                this.ships.push(new PatrolShip(order));
             }
-            else if(idx === 1){
-                this.ships[i] = new BattleShip(order)
-            }
-            else if(idx === 2){
-                this.ships[i] = new Destroyer(order);
-            }
-            else if(idx === 3){
-                this.ships[i] = new StealthShip(order);
-            }
-            else{
-                this.ships[i] = new PatrolShip(order);
-            }
-            i++;
             order++;
             shipsNum[idx]--;
         }
 
-        this.xDim = xDim;
-        this.yDim = yDim;
-        this.gridMap = new Array(yDim);
+        this._xDim = xDim;
+        this._yDim = yDim;
+        this._gridMap = new Array();
 
-        for(let i = 0; i < yDim; ++i){
-            this.gridMap[i] = new Array(xDim);
+        for (let i = 0; i < yDim; ++i) {
+            const rows = new Array();
+            for (let j = 0; j < xDim; ++j) {
+                rows.push(new Grid());
+            }
+            this.gridMap.push(rows);
         }
 
-        this.shotToClear = 0;
-        for(let i = 0 ; i < this.ships.length; ++i){
-            placeShip(this.ships[i]);
+        this._shotToClear = 0;
+        for (let i = 0; i < this.ships.length; ++i) {
+            this.placeShip(this.ships[i]);
             this.shotToClear = this.shotToClear + this.ships[i].cnt;
-        }   
+        }
     }
-    get numOfActiveShips(){
-        return this.numOfActiveShips;
+    get ships() {
+        return this._ships;
     }
-    get shotToClear(){
-        return this.shotToClear;
+    set ships(ships) {
+        this._ships = ships;
     }
-    placeShip(ship){
+    get numOfActiveShips() {
+        return this._numOfActiveShips;
+    }
+    set numOfActiveShips(numOfActiveShips) {
+        this._numOfActiveShips = numOfActiveShips;
+    }
+    get shotToClear() {
+        return this._shotToClear;
+    }
+    set shotToClear(shotToClear) {
+        this._shotToClear = shotToClear;
+    }
+    get gridMap() {
+        return this._gridMap;
+    }
+    get xDim() {
+        return this._xDim;
+    }
+    get yDim() {
+        return this._yDim;
+    }
+    placeShip(ship) {
         const shipName = ship.name;
         let validPlacement = false;
         const rotateTime = randomFrom0ToN(3);
@@ -172,116 +226,119 @@ class LogicMap {
         do {
             xCenter = randomFrom0ToN(this.xDim);
             yCenter = randomFrom0ToN(this.yDim);
-            validPlacement = this.checkBoundary(xPos, yPos, ship.coor);
-        }
-        while(!validPlacement);
+            validPlacement = this.checkBoundary(xCenter, yCenter, ship.coor);
+        } while (!validPlacement);
 
         const center = [xCenter, yCenter];
 
-        for(let i = 0 ; i < ship.coor.length; ++i){
+        for (let i = 0; i < ship.coor.length; ++i) {
             ship.coor[i][0] += center[0];
-            ship.coor[i][1] += center[0];
-            this.gridMap[ship.coor[i][1]][ship.coor[i][0]].gridChar = shipName;
+            ship.coor[i][1] += center[1];
+            this.gridMap[ship.coor[i][1]][ship.coor[i][0]].gridType = shipName;
         }
 
-        let minX = ship.coor[0][0], minY = ship.coor[0][1];
-        let maxX = ship.coor[0][0], maxY = ship.coor[0][0];
+        let minX = ship.coor[0][0],
+            minY = ship.coor[0][1];
+        let maxX = ship.coor[0][0],
+            maxY = ship.coor[0][1];
 
-        for(let i = 1; i < ship.coor.length; ++i){
-            if(ship.coor[i][0] < minX){
+        for (let i = 1; i < ship.coor.length; ++i) {
+            if (ship.coor[i][0] < minX) {
                 minX = ship.coor[i][0];
-            }
-            else if(ship.coor[i][0] > maxX){
+            } else if (ship.coor[i][0] > maxX) {
                 maxX = ship.coor[i][0];
             }
 
-            if(ship.coor[i][1] < minY){
+            if (ship.coor[i][1] < minY) {
                 minY = ship.coor[i][1];
-            }
-            else if(y > maxY){
+            } else if (ship.coor[i][1] > maxY) {
                 maxY = ship.coor[i][1];
             }
         }
 
-        for(let i = minX; i <= maxX; ++i){
-            for(let j = minY; j <= maxY; ++j){
+        for (let i = minX; i <= maxX; ++i) {
+            for (let j = minY; j <= maxY; ++j) {
                 this.gridMap[j][i].isOccupied = true;
             }
         }
 
         return;
     }
-    checkBoundary(xPos, yPos, shipsCoor){
+    checkBoundary(xPos, yPos, shipsCoor) {
         let xCoor, yCoor;
-        for(const item of shipsCoor){
+        for (const item of shipsCoor) {
             xCoor = xPos + item[0];
             yCoor = yPos + item[1];
 
-            if(xCoor < 0 || xCoor >= this.yDim || yCoor < 0 || yCoor >= this.yDim){
+            if (xCoor < 0 || xCoor >= this.yDim || yCoor < 0 || yCoor >= this.yDim) {
                 return false;
             }
-            if(this.gridMap[yCoor][xCoor].isOccupied){
+            if (this.gridMap[yCoor][xCoor].isOccupied) {
                 return false;
             }
         }
 
         return true;
     }
-    gridShot(x, y){
-        if(this.gridMap[y][x].isReveal === true){
+    gridShot(x, y) {
+        if (this.gridMap[y][x].isReveal === true) {
             return;
         }
-        currentGridChar = this.gridMap[y][x].gridChar;
-        if(currentGridChar === "~"){
+        this.gridMap[y][x].isReveal = true;
+        const currentGridChar = this.gridMap[y][x].gridType;
+        if (currentGridChar === "~") {
             console.log("Miss shot");
-            this.gridMap[y][x].gridChar("o");
+            this.gridMap[y][x].gridType = "o";
             return 0;
-        }
-        else if(currentGridChar === "x" || currentGridChar === "o"){
+        } else if (currentGridChar === "x" || currentGridChar === "o") {
             console.log("The location has already been bombarded!!!");
             return 0;
         }
 
-        this.gridMap[y][x].gridChar = "x";
-        for(let i = 0 ; i < this.ships.length; ++i){
-            if(this.ships[i].name !== currentGridChar){
+        this.gridMap[y][x].gridType = "x";
+        for (let i = 0; i < this.ships.length; ++i) {
+            if (this.ships[i].name !== currentGridChar) {
                 continue;
             }
-            if(this.findShipCoor(ships[i], x, y)){
+            if (this.findShipCoor(this.ships[i], x, y)) {
                 this.ships[i].getHit();
-                if(this.ships[i].cnt === 0){
-                    console.log(`DIRECT HIT! \nCongratulation! The enemy ${ships[i].name} has been destroyed!!!`);
-                }
-                else{
-                    console.log(`DIRECT HIT! The shot has landed on enemy ${ships[i].name} ${this.ships[i].order}.`);
+                if (this.ships[i].cnt === 0) {
+                    this.numOfActiveShips--;
+                    console.log(
+                        `DIRECT HIT! \nCongratulation! The enemy ${ships[i].name} has been destroyed!!!`
+                    );
+                } else {
+                    console.log(
+                        `DIRECT HIT! The shot has landed on enemy ${ships[i].name} ${this.ships[i].order}.`
+                    );
                 }
                 return 1;
             }
-
         }
         return 1;
     }
-    findShipCoor(ship, xPos, yPos){
-        shipCoor = ship.coor;
+    findShipCoor(ship, xPos, yPos) {
+        const shipCoor = ship.coor;
 
-        for(let i = 0; i < shipCoor.length; ++i){
-            if(shipCoor[i][0] == xPos && shipCoor[i][1] == yPos){
+        for (let i = 0; i < shipCoor.length; ++i) {
+            if (shipCoor[i][0] == xPos && shipCoor[i][1] == yPos) {
                 return true;
             }
         }
         return false;
     }
-    
 }
 
+const logicMap = new LogicMap([1, 1, 1, 1, 1], 12, 10);
 /*======================================== Additional functions ====================================*/
-function randomFrom0ToN(n){
+function randomFrom0ToN(n) {
     const ran = Math.random();
-    if(ran == 1){
+    if (ran == 1) {
         return n;
     }
     return Math.floor(ran * (n + 1));
 }
+
 /*============================================ WEB DESIGN ==========================================*/
 const board = document.getElementById("board").children[0].children[0];
 const fire = document.getElementById("fire");
@@ -290,21 +347,28 @@ const restart = document.getElementsByClassName("restart")[0];
 const explosion = new Audio("./source/audio/explosion.mp3");
 
 class EventMap {
-    constructor(){
-        this.matrix = new Array(10);
-        for(let i = 0; i < 10; ++i){
-            this.matrix[i] = new Array(12);
+    constructor() {
+        this._matrix = new Array();
+        for (let i = 0; i < 10; ++i) {
+            const rows = new Array(12);
+            this.matrix.push(rows);
         }
     }
-    getCell(i , j){
+    get matrix() {
+        return this._matrix;
+    }
+    set matrix(matrix) {
+        this._matrix = matrix;
+    }
+    getCell(i, j) {
         return this.matrix[i][j];
     }
 }
 
 const eventMap = new EventMap();
 
-for(let i = 0 ; i < 10; ++i){
-    for(let j = 0; j < 12; ++j){
+for (let i = 0; i < 10; ++i) {
+    for (let j = 0; j < 12; ++j) {
         eventMap.matrix[i][j] = board.children[i].children[j];
     }
 }
@@ -314,45 +378,48 @@ let func;
 let xPos, yPos;
 // Function handler for onClickChoose
 
-function chooseCell(event, i, j){
-    if(current){
+function chooseCell(event, y, x) {
+    if (current) {
         current.style.backgroundColor = "#04bade";
+    } else if (logicMap.gridMap[y][x].isReveal) {
+        return;
     }
     event.target.style.backgroundColor = "red";
     current = event.target;
-    yPos = i;
-    xPos = j;
+    yPos = y;
+    xPos = x;
 }
 
-for(let i = 0 ; i < 10; ++i){
-    for(let j = 0; j < 12; ++j){
-        func = function(event){
-            chooseCell(event, i , j);
-        }
+for (let i = 0; i < 10; ++i) {
+    for (let j = 0; j < 12; ++j) {
+        func = function (event) {
+            chooseCell(event, i, j);
+        };
         eventMap.matrix[i][j].addEventListener("click", func);
     }
 }
 
 // Function handler for onClickAttack
 
-function onClickAttack(){
-    if(!current) return;
+function onClickAttack() {
+    if (!current) return;
     explosion.pause();
     explosion.currentTime = 0;
     explosion.play();
     current.style.backgroundColor = "grey";
-    func = function(event){
-        chooseCell(event, yPos , xPos);
-    }
+    func = function (event) {
+        chooseCell(event, yPos, xPos);
+    };
     current.removeEventListener("click", func);
     current = undefined;
+    logicMap.gridShot(xPos, yPos);
 }
 
 fire.addEventListener("click", onClickAttack);
 
 // Function handler for restart
 
-function onClickRestart(){
+function onClickRestart() {
     location.reload();
 }
 
