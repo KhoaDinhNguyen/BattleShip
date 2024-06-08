@@ -277,6 +277,9 @@ table.playboard td:hover {
   color: white;
   margin: 0 auto;
   margin-bottom: 10px;
+  height: 100px;
+  background-color: #0b6e4f;
+  overflow-y: auto;
 }
 
 .logfile h2 {
@@ -286,7 +289,6 @@ table.playboard td:hover {
 }
 
 .logfile ul {
-  background-color: #0b6e4f;
   opacity: 0.8;
   list-style-position: inside;
 }
@@ -340,6 +342,7 @@ table.playboard td:hover {
 
   .logfile {
     width: 15rem;
+    height: 10rem;
   }
 
   .info {
