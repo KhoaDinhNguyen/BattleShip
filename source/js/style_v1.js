@@ -287,12 +287,7 @@ class LogicMap {
         this.gridMap[y][x].isReveal = true;
         const currentGridChar = this.gridMap[y][x].gridType;
         if (currentGridChar === "~") {
-            console.log("Miss shot");
-            this.gridMap[y][x].gridType = "o";
-            return 0;
-        } else if (currentGridChar === "x" || currentGridChar === "o") {
-            console.log("The location has already been bombarded!!!");
-            return 0;
+            return false;
         }
 
         this.gridMap[y][x].gridType = "x";
@@ -305,17 +300,17 @@ class LogicMap {
                 if (this.ships[i].cnt === 0) {
                     this.numOfActiveShips--;
                     console.log(
-                        `DIRECT HIT! \nCongratulation! The enemy ${ships[i].name} has been destroyed!!!`
+                        `DIRECT HIT! \nCongratulation! The enemy ${this.ships[i].name} has been destroyed!!!`
                     );
                 } else {
                     console.log(
-                        `DIRECT HIT! The shot has landed on enemy ${ships[i].name} ${this.ships[i].order}.`
+                        `DIRECT HIT! The shot has landed on enemy ${this.ships[i].name} ${this.ships[i].order}.`
                     );
                 }
-                return 1;
+                return true;
             }
         }
-        return 1;
+        return true;
     }
     findShipCoor(ship, xPos, yPos) {
         const shipCoor = ship.coor;
@@ -343,6 +338,7 @@ function randomFrom0ToN(n) {
 const board = document.getElementById("board").children[0].children[0];
 const fire = document.getElementById("fire");
 const restart = document.getElementsByClassName("restart")[0];
+const announce = document.getElementsByClassName("info")[0];
 
 const explosion = new Audio("./source/audio/explosion.mp3");
 
@@ -381,10 +377,18 @@ let xPos, yPos;
 function chooseCell(event, y, x) {
     if (current) {
         current.style.backgroundColor = "#04bade";
+        current.style.position = "static";
+        current.style.border = "white solid 2px";
+    event.target.style.borderRight = "solid 2px rgba(0, 0, 255, .5)";
     } else if (logicMap.gridMap[y][x].isReveal) {
         return;
     }
     event.target.style.backgroundColor = "red";
+    event.target.style.position = "relative";
+    event.target.style.bottom = "5px";
+    event.target.style.borderBottom = "solid 2px rgba(0, 0, 255, .5)";
+    event.target.style.borderRight = "solid 2px rgba(0, 0, 255, .5)";
+
     current = event.target;
     yPos = y;
     xPos = x;
@@ -400,19 +404,38 @@ for (let i = 0; i < 10; ++i) {
 }
 
 // Function handler for onClickAttack
-
 function onClickAttack() {
+    if(announce.children.length === 2){
+        announce.removeChild(document.getElementById('hit'));
+    }
     if (!current) return;
     explosion.pause();
     explosion.currentTime = 0;
     explosion.play();
     current.style.backgroundColor = "grey";
+    current.style.position = "static";
+    current.style.border = "white solid 2px";
     func = function (event) {
         chooseCell(event, yPos, xPos);
     };
     current.removeEventListener("click", func);
     current = undefined;
-    logicMap.gridShot(xPos, yPos);
+    const isHit = logicMap.gridShot(xPos, yPos);
+    const info = document.createElement('p');
+    info.id = 'hit';
+   
+    if(isHit){
+        info.innerHTML = 'HIT!';
+        info.style.color = "yellow";
+    }
+    else{
+        info.innerHTML = 'MISS';
+        info.style.color = "#e93b3b";
+    }
+    announce.appendChild(info);
+    setTimeout(() => {
+        announce.removeChild(info);
+    }, 1000)
 }
 
 fire.addEventListener("click", onClickAttack);
