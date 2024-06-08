@@ -280,6 +280,7 @@ table.playboard td:hover {
   height: 100px;
   background-color: #0b6e4f;
   overflow-y: auto;
+  scrollbar-color: blue;
 }
 
 .logfile h2 {
@@ -291,6 +292,8 @@ table.playboard td:hover {
 .logfile ul {
   opacity: 0.8;
   list-style-position: inside;
+  display: flex;
+  flex-flow: column-reverse;
 }
 
 .logfile ul li {
@@ -341,16 +344,35 @@ table.playboard td:hover {
   }
 
   .logfile {
-    width: 15rem;
+    width: 12.5rem;
     height: 10rem;
   }
 
   .info {
-    width: 15rem;
+    width: 12.5rem;
     height: 5rem;
   }
 
   .info p {
     top: 8px;
+  }
+}
+
+/*============================= shot remain ======================= */
+.shoot {
+  color: white;
+  text-align: left;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.shoot p{
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (min-width: 40rem) and (max-width: 64rem) {
+  .shoot {
+    margin-left: 6rem;
   }
 }
