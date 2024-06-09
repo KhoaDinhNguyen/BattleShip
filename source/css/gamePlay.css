@@ -178,6 +178,7 @@ table.playboard td:hover {
     grid-row: 1 / span 1;
     align-self: center;
     margin: 0 auto;
+    margin-bottom: 20px;
   }  
   #fire h2 {
     position: relative;
@@ -387,6 +388,7 @@ table.playboard td:hover {
   top: 6rem;
   border-radius: 10px;
   background-color: azure;
+  visibility: hidden;
 
 }
 
@@ -409,8 +411,6 @@ table.playboard td:hover {
   min-width: min-content;
   max-width: 200px;
   background-color: rgb(241, 252, 118);
-
-
 }
 
 .shipShape table {
@@ -462,10 +462,39 @@ table.playboard td:hover {
     left: 50%;
     transform: translate(-50%, 0);
     width: 550px;
-    top: 8rem;
+    top: 13rem;
     opacity: 0.95;
   }
   .shipShape div div {
     max-width: max-content;
   }
+}
+
+  
+/*============================= ship shapes button ======================= */
+
+.shipShapeButton {
+  background-color: yellowgreen;
+  font-size: 1.3rem;
+  padding: 5px;
+  border: 1px solid yellowgreen;
+  border-radius: 10px;
+  box-shadow: 5px 5px #04bade;
+  box-shadow: 5px 5px rgba(0, 0, 255, .15);
+  margin: 0 auto;
+  margin-bottom: 10px;
+  font-weight: 700;
+  transition: all 0.25s;
+  width: max-content;
+}
+
+.shipShapeButton:hover {
+  border: 1px solid azure;
+  background-color: azure;
+}
+
+.shipShapeButton:active {
+  background-color: azure;
+  border: 1px solid yellowgreen;
+  color: yellowgreen;
 }

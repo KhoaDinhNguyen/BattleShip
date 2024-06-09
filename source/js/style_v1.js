@@ -336,6 +336,9 @@ const fire = document.getElementById("fire");
 const restart = document.getElementsByClassName("restart")[0];
 const announce = document.getElementsByClassName("info")[0];
 const logList = document.getElementById("logFileList");
+const shipShape = document.getElementsByClassName("shipShape")[0];
+const shipShapeButton = document.getElementsByClassName("shipShapeButton")[0];
+
 const explosion = new Audio("./source/audio/explosion.mp3");
 
 class EventMap {
@@ -454,3 +457,17 @@ function onClickRestart() {
 }
 
 restart.addEventListener("click", onClickRestart);
+
+// Function handler for ship shapes
+
+function mouseEnterShipShape(){
+    shipShape.style.visibility = "visible";
+}
+
+function mouseLeaveShipShape(){
+    shipShape.style.visibility = "hidden";
+}
+
+shipShapeButton.addEventListener("mouseenter", mouseEnterShipShape);
+shipShapeButton.addEventListener("mouseleave", mouseLeaveShipShape);
+
