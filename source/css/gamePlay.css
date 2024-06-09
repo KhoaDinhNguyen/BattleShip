@@ -381,18 +381,22 @@ table.playboard td:hover {
 
 .shipShape {
   position: absolute;
-  background-color: azure;
   left: 50%;
   transform: translate(-50%, 0);
   min-width: 300px;
+  top: 6rem;
+  border-radius: 10px;
+  background-color: azure;
+
 }
 
 .shipShape div {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   align-items:center;
   justify-content: space-between;
   min-width: min-content;
+  border-radius: 10px;
 }
 
 .shipShape div div {
@@ -400,10 +404,13 @@ table.playboard td:hover {
   justify-content: space-between;
   flex-flow: row wrap;
   border: 1px black solid;
-  margin-bottom: 10px;
+  margin-top: 10px;
   margin-left: 10px;
   min-width: min-content;
   max-width: 200px;
+  background-color: rgb(241, 252, 118);
+
+
 }
 
 .shipShape table {
@@ -418,13 +425,46 @@ table.playboard td:hover {
   background: grey;
 }
 
+.shipShape table td.isOccupied {
+  background-color: #50F76C;
+}
+
+.shipShape p {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-right: 10px;
+  opacity: 0.8;
+}
+
+.note {
+  margin-bottom: 10px;
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
 @media only screen and (min-width: 40rem) and (max-width: 64rem) {
+  .shipShape {
+    position: absolute;
+    left: 15px;
+    transform: translate(-15px, 0);
+    width: 450px;
+    top: 8rem;
+    opacity: 0.95;
+  }
   .shipShape div div {
     max-width: max-content;
   }
 }
 
 @media only screen and (min-width: 64rem) {
+  .shipShape {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 550px;
+    top: 8rem;
+    opacity: 0.95;
+  }
   .shipShape div div {
     max-width: max-content;
   }
