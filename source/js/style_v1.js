@@ -1,4 +1,5 @@
 let msg;
+let numberOfFired = 0;
 
 class Ship {
     constructor(name, coor, order) {
@@ -297,6 +298,7 @@ class LogicMap {
             }
             if (this.findShipCoor(this.ships[i], x, y)) {
                 this.ships[i].getHit();
+                this.shotToClear--;
                 if (this.ships[i].cnt === 0) {
                     this.numOfActiveShips--;
                     msg = `(${x}, ${y}): Destroy ${this.ships[i].name} ${this.ships[i].order}`;
@@ -437,7 +439,9 @@ function onClickAttack() {
     announce.appendChild(info);
 
     setTimeout(() => {
-        announce.removeChild(info);
+        if(announce.children.length == 2){
+            announce.removeChild(info);
+        }
     }, 1000);
 
     // Log file
@@ -446,6 +450,11 @@ function onClickAttack() {
     content.innerHTML = msg;
     listItem.appendChild(content);
     logList.appendChild(listItem);
+    numberOfFired++;
+    document.getElementsByClassName("shoot")[0].children[0].children[0].innerHTML = `<span>${numberOfFired}</span>`;
+    document.getElementsByClassName("shoot")[0].children[1].children[0].innerHTML = `<span>${logicMap.shotToClear}</span>`;
+    document.getElementsByClassName("shoot")[0].children[2].children[0].innerHTML = `<span>${logicMap.numOfActiveShips}</span>`;
+
 }
 
 fire.addEventListener("click", onClickAttack);
@@ -471,3 +480,6 @@ function mouseLeaveShipShape(){
 shipShapeButton.addEventListener("mouseenter", mouseEnterShipShape);
 shipShapeButton.addEventListener("mouseleave", mouseLeaveShipShape);
 
+document.getElementsByClassName("shoot")[0].children[0].children[0].innerHTML = `<span>${numberOfFired}</span>`;
+document.getElementsByClassName("shoot")[0].children[1].children[0].innerHTML = `<span>${logicMap.shotToClear}</span>`;
+document.getElementsByClassName("shoot")[0].children[2].children[0].innerHTML = `<span>${logicMap.numOfActiveShips}</span>`;
