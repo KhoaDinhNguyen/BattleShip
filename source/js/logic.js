@@ -302,7 +302,7 @@ class LogicMap {
         this.gridMap[y][x].isReveal = true;
         const currentGridChar = this.gridMap[y][x].gridType;
         if (currentGridChar === "~") {
-            msg = `(${x}, ${y}): Miss`;
+            this.message = `(${x}, ${y}): Miss`;
             return false;
         }
 
@@ -316,9 +316,9 @@ class LogicMap {
                 this.shotToClear--;
                 if (this.ships[i].cnt === 0) {
                     this.numOfActiveShips--;
-                    msg = `(${x}, ${y}): Destroy ${this.ships[i].name} ${this.ships[i].order}`;
+                    this.message = `(${x}, ${y}): Destroy ${this.ships[i].name} ${this.ships[i].order}`;
                 } else {
-                    msg = `(${x}, ${y}): Hit ${this.ships[i].name} ${this.ships[i].order}`;
+                    this.message = `(${x}, ${y}): Hit ${this.ships[i].name} ${this.ships[i].order}`;
                 }
                 return true;
             }
