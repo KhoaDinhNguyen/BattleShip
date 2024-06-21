@@ -1,0 +1,12 @@
+{
+  "name": "battleship",
+  "version": "1.0.0",
+  "description": "Battleship gameplay website",
+  "main": "./source/js/style_v1.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "KhoaNguyen",
+  "license": "ISC"
+}

@@ -1,3 +1,6 @@
+let msg;
+let numberOfFired = 0;
+
 class Ship {
     constructor(name, coor, order) {
         this._name = name;
@@ -188,6 +191,9 @@ class LogicMap {
             this.placeShip(this.ships[i]);
             this.shotToClear = this.shotToClear + this.ships[i].cnt;
         }
+
+        this._message = "";
+        this._numberOfFired = 0;
     }
     get ships() {
         return this._ships;
@@ -215,6 +221,18 @@ class LogicMap {
     }
     get yDim() {
         return this._yDim;
+    }
+    get message(){
+        return this._message;
+    }
+    set message(message){
+        this._message = message;
+    }
+    get numberOfFired(){
+        return this._numberOfFired;
+    }
+    set numberOfFired(num){
+        this._numberOfFired = num;
     }
     placeShip(ship) {
         const shipName = ship.name;
@@ -332,7 +350,9 @@ const resources = {
     Ship,
     Grid,
     LogicMap,
-    randomFrom0ToN
+    randomFrom0ToN,
+    msg,
+    numberOfFired
 }
 
 export default resources;

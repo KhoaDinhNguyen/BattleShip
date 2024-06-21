@@ -1,10 +1,9 @@
-import {resources} from './logic'
+import resources from './logic.js';
 
-const {Ship, Grid, LogicMap, randomFrom0ToN} = resources;
+let {Ship, Grid, LogicMap, randomFrom0ToN, msg, numberOfFired} = resources;
 
 const logicMap = new LogicMap([1, 1, 1, 1, 1], 12, 10);
-let msg;
-let numberOfFired = 0;
+
 
 /*============================================ WEB DESIGN ==========================================*/
 const board = document.getElementById("board").children[0].children[0];
