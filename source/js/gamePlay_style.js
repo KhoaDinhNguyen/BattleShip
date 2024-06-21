@@ -9,6 +9,7 @@ const logicMap = new LogicMap([1, 1, 1, 1, 1], 12, 10);
 const board = document.getElementById("board").children[0].children[0];
 const fire = document.getElementById("fire");
 const restart = document.getElementsByClassName("restart")[0];
+const quit = document.getElementsByClassName("quit")[0];
 const announce = document.getElementsByClassName("info")[0];
 const logList = document.getElementById("logFileList");
 const shipShape = document.getElementsByClassName("shipShape")[0];
@@ -120,11 +121,11 @@ function onClickAttack() {
     // Log file
     const listItem = document.createElement('li');
     const content = document.createElement('p');
-    content.innerHTML = msg;
+    content.innerHTML = logicMap.message;
     listItem.appendChild(content);
     logList.appendChild(listItem);
-    numberOfFired++;
-    document.getElementsByClassName("shoot")[0].children[0].children[0].innerHTML = `<span>${numberOfFired}</span>`;
+    logicMap.numberOfFired++;
+    document.getElementsByClassName("shoot")[0].children[0].children[0].innerHTML = `<span>${logicMap.numberOfFired}</span>`;
     document.getElementsByClassName("shoot")[0].children[1].children[0].innerHTML = `<span>${logicMap.shotToClear}</span>`;
     document.getElementsByClassName("shoot")[0].children[2].children[0].innerHTML = `<span>${logicMap.numOfActiveShips}</span>`;
 
@@ -133,13 +134,18 @@ function onClickAttack() {
 fire.addEventListener("click", onClickAttack);
 
 // Function handler for restart
-
 function onClickRestart() {
     location.reload();
 }
 
 restart.addEventListener("click", onClickRestart);
 
+// Function handler for quit
+function onClickQuit() {
+    location.assign("../index.html");
+}
+
+quit.addEventListener("click", onClickQuit);
 // Function handler for ship shapes
 
 function mouseEnterShipShape(){

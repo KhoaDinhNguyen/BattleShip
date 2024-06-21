@@ -43,14 +43,34 @@ nav li {
   padding: 10px;
 }
 
+nav a {
+  font-size: 1rem;
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 nav li:hover {
   background-color: #f7e48c;
   cursor: default;
 }
 
+@media only screen and (max-width: 40rem) {
+  header li{
+    border: 1px solid white;
+  }
+  header figure{
+    border-right: 1px solid white;
+    padding-right: 10px;
+  }
+}
+
 @media only screen and (min-width: 40rem) and (max-width: 64rem) {
   header {
     font-size: 1rem;
+  }
+  nav a {
+    font-size: 1.5rem;
   }
 }
 
@@ -66,6 +86,9 @@ nav li:hover {
   }
   header img {
     max-width: 3em;
+  }
+  nav a {
+    font-size: 1.5rem;
   }
 }
 /*============================= main ======================= */
@@ -108,7 +131,7 @@ table.playboard td:hover {
     display: grid;
     margin: 0 auto;
     grid-template-columns: 450px auto;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: repeat(3, auto);                                              ;
   }
   table.playboard {
     grid-column: 1 / span 1;
@@ -116,6 +139,7 @@ table.playboard td:hover {
     margin: 0 15px;
     margin-bottom: 20px;
   }
+  
   table.playboard td {
     border: white solid 2px;
     width: 40px;
@@ -248,6 +272,13 @@ table.playboard td:hover {
     grid-row: 3 / span 1;
     margin: 10px auto;
     width: 8rem;
+  }
+  #interact .quit {
+    padding: 5px 10px;
+
+  }
+  #interact .restart {
+    padding: 5px 10px;
   }
 }
 
